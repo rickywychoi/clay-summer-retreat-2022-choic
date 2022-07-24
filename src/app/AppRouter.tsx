@@ -5,6 +5,8 @@ import Container from '@mui/material/Container';
 import Landing from './pages/Landing/Landing';
 import './main.css';
 import ResetPage from './pages/Reset/Reset';
+import Choice from './pages/Choice/Choice';
+import FinalSummary from './pages/FinalSummary.tsx/FinalSummary';
 
 export default function AppRouter() {
   const LoadingMessage = () => <div>Loading...</div>;
@@ -15,8 +17,10 @@ export default function AppRouter() {
 
       <Suspense fallback={<LoadingMessage />}>
         <Routes>
-          <Route path="/" element={WithStyle(Landing)} />
+          <Route path="/" element={WithStyle(Landing)} />\
+          <Route path="/MakeChoice" element={WithStyle(Choice)} />
           <Route path="/StartOver" element={WithStyle(ResetPage)} />
+          <Route path="/TheEnd" element={WithStyle(FinalSummary)} />
         </Routes>
       </Suspense>
     </BrowserRouter>

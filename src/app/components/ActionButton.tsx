@@ -6,9 +6,10 @@ type Props = {
   onClick: () => void;
   customStyle?: React.CSSProperties;
   color?: 'inherit' | 'warning' | 'primary' | 'secondary' | 'success' | 'error' | 'info';
+  fullWidth?: boolean;
 };
 
-const ActionButton: React.FunctionComponent<Props> = ({ label, onClick, customStyle, color }) => {
+const ActionButton: React.FunctionComponent<Props> = ({ label, onClick, customStyle, color, fullWidth }) => {
   return (
     <Button
       variant="contained"
@@ -16,6 +17,7 @@ const ActionButton: React.FunctionComponent<Props> = ({ label, onClick, customSt
       style={{ fontSize: '18px', ...customStyle }}
       onClick={onClick}
       color={color}
+      fullWidth={fullWidth}
     >
       {label}
     </Button>

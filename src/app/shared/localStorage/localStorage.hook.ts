@@ -1,29 +1,41 @@
 enum keys {
-  choices = 'choices'
+  Choices = 'choices',
+  InActivity = 'inActivity'
 }
 
 const parseChoices = (choicesFlatten: string) => choicesFlatten.split(',');
 
 export const useLocalStorage = () => {
-  const choicesRaw = localStorage.getItem(keys.choices);
+  // choices
+  const choicesRaw = localStorage.getItem(keys.Choices);
   const choices = choicesRaw ? parseChoices(choicesRaw) : [];
   const resetChoices = () => {
-    localStorage.setItem(keys.choices, '');
+    localStorage.setItem(keys.Choices, '');
   };
   const addChoice = (choice: string) => {
-    const choices = localStorage.getItem(keys.choices);
+    const choices = localStorage.getItem(keys.Choices);
     if (choices === null) {
       return;
     }
     const choiceAdded = choices === '' ? choice : `${choices},${choice}`;
-    localStorage.setItem(keys.choices, choiceAdded);
+    localStorage.setItem(keys.Choices, choiceAdded);
   };
-  const setChoice = () => localStorage.setItem(keys.choices, '');
+  const setChoices = (val: string) => localStorage.setItem(keys.Choices, val);
+
+  // inActivity
+  const getInActivity = () => {
+    const val = localStorage.getItem(keys.InActivity);
+    return !val || val === 'false' ? false : true;
+  };
+  const setInActivity = (inActivity: boolean) => localStorage.setItem(keys.InActivity, `${inActivity}`);
 
   return {
+    choicesRaw,
     choices,
     resetChoices,
     addChoice,
-    setChoice
+    setChoices,
+    getInActivity,
+    setInActivity
   };
 };
