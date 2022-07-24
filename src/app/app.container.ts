@@ -1,5 +1,4 @@
 import { container } from 'inversify-props';
-import { exampleModule } from './example';
 import * as s from './shared';
 
 // How to inject a dependency
@@ -12,5 +11,4 @@ export function containerBuilder(): void {
   container.addSingleton<s.ILogService>(s.LogService);
 
   // Bind services for each module
-  exampleModule.container();
 }
