@@ -1,37 +1,44 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import './landing.css';
 import Separator from '../../components/Separator';
 import ActionButton from '~/app/components/ActionButton';
 import { useNavigation } from '~/app/shared/router/router.hook';
 import { useLocalStorage } from '~/app/shared/localStorage/localStorage.hook';
 import { treeExample } from '~/app/core/binaryTree/treeExample';
-import { inOrder } from '~/app/core/binaryTree/utils';
+import { checkIfLastChild, inOrder } from '~/app/core/binaryTree/utils';
 import { routes } from '~/app/shared/routes';
 
 const root = treeExample();
 
 const Landing = () => {
+  const { navigateTo } = useNavigation();
   const { choicesRaw, choices, setChoices, getInActivity, setInActivity } = useLocalStorage();
-  useEffect(() => {
-    if (!choicesRaw) {
+
+  const isChoicesEmpty = useMemo(() => !choicesRaw, [choicesRaw]);
+
+  const syncDataFromLocalStorage = useCallback(() => {
+    if (isChoicesEmpty) {
       setChoices('');
     } else {
       setChoices(choicesRaw);
     }
     const inActivity = getInActivity();
     setInActivity(inActivity);
-  }, [choicesRaw, setChoices, getInActivity, setInActivity]);
+  }, [isChoicesEmpty, choicesRaw, setChoices, getInActivity, setInActivity]);
 
-  const { navigateTo } = useNavigation();
+  useEffect(() => {
+    syncDataFromLocalStorage();
+  }, [syncDataFromLocalStorage]);
 
   const handleStart = useCallback(() => {
+    const inActivity = getInActivity();
     const cur = choices.length > 0 && inOrder(root, choices[choices.length - 1]);
-    if (cur && (!cur.left || !cur.right)) {
+    if (checkIfLastChild(cur) && !inActivity) {
       navigateTo(routes.TheEnd);
     } else {
       navigateTo(routes.MakeChoice);
     }
-  }, [choices, navigateTo]);
+  }, [choices, navigateTo, getInActivity]);
 
   return (
     <div className="main">
@@ -54,7 +61,7 @@ const Landing = () => {
         단, 불가피하게 다시 시작해야 한다면, 왼쪽 상단 메뉴의 &apos;다시 시작&apos;을 방문해주세요.
       </p>
       <Separator height="20px" />
-      <ActionButton label={!choicesRaw ? '시작하기' : '계속하기'} onClick={handleStart} />
+      <ActionButton label={isChoicesEmpty ? '시작하기' : '계속하기'} onClick={handleStart} />
     </div>
   );
 };

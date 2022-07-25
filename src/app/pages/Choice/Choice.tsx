@@ -5,7 +5,7 @@ import Separator from '~/app/components/Separator';
 import { useLocalStorage } from '~/app/shared/localStorage/localStorage.hook';
 import { treeExample } from '~/app/core/binaryTree/treeExample';
 import { Node } from '~/app/core/binaryTree/types';
-import { inOrder } from '~/app/core/binaryTree/utils';
+import { checkIfLastChild, inOrder } from '~/app/core/binaryTree/utils';
 import ActionButton from '~/app/components/ActionButton';
 import { useNavigation } from '~/app/shared/router/router.hook';
 import { routes } from '~/app/shared/routes';
@@ -13,6 +13,9 @@ import { routes } from '~/app/shared/routes';
 const root = treeExample();
 
 const Choice = () => {
+  // local storage
+  const { choices, addChoice, getInActivity, setInActivity } = useLocalStorage();
+
   // navigation
   const { navigateTo } = useNavigation();
 
@@ -21,13 +24,12 @@ const Choice = () => {
   const [currentNode, setCurrentNode] = useState<Node | undefined>();
   const [optionToProceed, setOptionToProceed] = useState<Node | undefined>();
   const loading = useMemo(() => !currentNode, [currentNode]);
-  const { choices, addChoice, getInActivity, setInActivity } = useLocalStorage();
   const level = useMemo(() => choices.length + 1, [choices]);
   const process = useMemo(() => {
     const choiceLabels = choices.map((c) => inOrder(root, c).label);
     return choiceLabels.join(' > ');
   }, [choices]);
-  const isEnd = useMemo(() => currentNode && (!currentNode.left || !currentNode.right), [currentNode]);
+  const isEnd = useMemo(() => checkIfLastChild(currentNode), [currentNode]);
 
   const handleOption = (option: Node) => {
     setChoiceConfirmDialogOpen(true);
@@ -61,6 +63,7 @@ const Choice = () => {
   };
 
   const navigateToSummaryPage = () => {
+    setInActivity(false);
     navigateTo(routes.TheEnd);
   };
 
@@ -72,7 +75,7 @@ const Choice = () => {
     }
   }, [choices]);
 
-  return loading ? (
+  return !!loading ? (
     <div>loading...</div>
   ) : (
     <div>
@@ -105,7 +108,7 @@ const Choice = () => {
         open={choiceConfirmDialogOpen}
         onClose={handleOptionProcessCancel}
         onProceed={handleProceedChoice}
-        title={optionToProceed ? `${optionToProceed.label} - 확실합니까?` : ''}
+        title={!!optionToProceed ? `${optionToProceed.label} - 확실합니까?` : ''}
       />
 
       <ConfirmDialog

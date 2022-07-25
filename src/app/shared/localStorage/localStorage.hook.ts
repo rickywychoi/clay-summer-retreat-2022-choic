@@ -8,16 +8,16 @@ const parseChoices = (choicesFlatten: string) => choicesFlatten.split(',');
 export const useLocalStorage = () => {
   // choices
   const choicesRaw = localStorage.getItem(keys.Choices);
-  const choices = choicesRaw ? parseChoices(choicesRaw) : [];
+  const choices = !!choicesRaw ? parseChoices(choicesRaw) : [];
   const resetChoices = () => {
     localStorage.setItem(keys.Choices, '');
   };
   const addChoice = (choice: string) => {
-    const choices = localStorage.getItem(keys.Choices);
-    if (choices === null) {
+    const choicesRaw = localStorage.getItem(keys.Choices);
+    if (choicesRaw === null) {
       return;
     }
-    const choiceAdded = choices === '' ? choice : `${choices},${choice}`;
+    const choiceAdded = choicesRaw === '' ? choice : `${choicesRaw},${choice}`;
     localStorage.setItem(keys.Choices, choiceAdded);
   };
   const setChoices = (val: string) => localStorage.setItem(keys.Choices, val);

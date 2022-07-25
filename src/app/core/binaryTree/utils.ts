@@ -39,3 +39,5 @@ export const setNodeUniqueKey = (root: Node) => {
     ctr++;
   });
 };
+
+export const checkIfLastChild = (node: Node) => !!node && (!node.left || !node.right);
