@@ -7,6 +7,7 @@ import './main.css';
 import ResetPage from './pages/Reset/Reset';
 import Choice from './pages/Choice/Choice';
 import FinalSummary from './pages/FinalSummary.tsx/FinalSummary';
+import { routes } from './shared/routes';
 
 export default function AppRouter() {
   const LoadingMessage = () => <div>Loading...</div>;
@@ -18,9 +19,9 @@ export default function AppRouter() {
       <Suspense fallback={<LoadingMessage />}>
         <Routes>
           <Route path="/" element={WithStyle(Landing)} />\
-          <Route path="/MakeChoice" element={WithStyle(Choice)} />
-          <Route path="/StartOver" element={WithStyle(ResetPage)} />
-          <Route path="/TheEnd" element={WithStyle(FinalSummary)} />
+          <Route path={routes.MakeChoice} element={WithStyle(Choice)} />
+          <Route path={routes.StartOver} element={WithStyle(ResetPage)} />
+          <Route path={routes.TheEnd} element={WithStyle(FinalSummary)} />
         </Routes>
       </Suspense>
     </BrowserRouter>

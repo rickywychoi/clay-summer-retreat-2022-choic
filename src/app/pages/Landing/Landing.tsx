@@ -6,6 +6,7 @@ import { useNavigation } from '~/app/shared/router/router.hook';
 import { useLocalStorage } from '~/app/shared/localStorage/localStorage.hook';
 import { treeExample } from '~/app/core/binaryTree/treeExample';
 import { inOrder } from '~/app/core/binaryTree/utils';
+import { routes } from '~/app/shared/routes';
 
 const root = treeExample();
 
@@ -26,9 +27,9 @@ const Landing = () => {
   const handleStart = useCallback(() => {
     const cur = choices.length > 0 && inOrder(root, choices[choices.length - 1]);
     if (cur && (!cur.left || !cur.right)) {
-      navigateTo('/TheEnd');
+      navigateTo(routes.TheEnd);
     } else {
-      navigateTo('/MakeChoice');
+      navigateTo(routes.MakeChoice);
     }
   }, [choices, navigateTo]);
 

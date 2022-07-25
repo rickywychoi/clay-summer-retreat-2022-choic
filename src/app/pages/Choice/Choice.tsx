@@ -8,6 +8,7 @@ import { Node } from '~/app/core/binaryTree/types';
 import { inOrder } from '~/app/core/binaryTree/utils';
 import ActionButton from '~/app/components/ActionButton';
 import { useNavigation } from '~/app/shared/router/router.hook';
+import { routes } from '~/app/shared/routes';
 
 const root = treeExample();
 
@@ -60,7 +61,7 @@ const Choice = () => {
   };
 
   const navigateToSummaryPage = () => {
-    navigateTo('/TheEnd');
+    navigateTo(routes.TheEnd);
   };
 
   useEffect(() => {
