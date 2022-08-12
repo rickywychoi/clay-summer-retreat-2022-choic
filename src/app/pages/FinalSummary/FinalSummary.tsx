@@ -17,10 +17,10 @@ const FinalSummary = () => {
         .map((c) => inOrder(root, c))
         .map((c) => {
           return (
-            <>
+            <div key={c.key}>
               <SummaryCard title={c.label} content={c.content} key={c.key} />
               <Separator height="10px" />
-            </>
+            </div>
           );
         })}
       <Separator height="50px" />
