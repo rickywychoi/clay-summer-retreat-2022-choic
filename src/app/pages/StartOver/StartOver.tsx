@@ -4,7 +4,7 @@ import Separator from '~/app/components/Separator';
 import { useNavigation } from '~/app/shared/router/router.hook';
 import { useLocalStorage } from '~/app/shared/localStorage/localStorage.hook';
 
-const ResetPage = () => {
+const StartOverPage = () => {
   const { resetChoices, setInActivity } = useLocalStorage();
   const { navigateTo, goBack } = useNavigation();
 
@@ -28,4 +28,4 @@ const ResetPage = () => {
   );
 };
 
-export default ResetPage;
+export default StartOverPage;

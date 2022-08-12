@@ -62,6 +62,7 @@ const Landing = () => {
       </p>
       <Separator height="20px" />
       <ActionButton label={isChoicesEmpty ? '시작하기' : '계속하기'} onClick={handleStart} />
+      <Separator height="20px" />
     </div>
   );
 };

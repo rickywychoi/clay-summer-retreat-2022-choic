@@ -5,6 +5,9 @@ export type PageItem = {
   route: string;
 };
 
-const pageItems: ReadonlyArray<PageItem> = [{ label: '다시 시작', route: routes.StartOver }];
+const pageItems: ReadonlyArray<PageItem> = [
+  { label: '지도', route: routes.Map },
+  { label: '다시 시작', route: routes.StartOver }
+];
 
 export { pageItems };
