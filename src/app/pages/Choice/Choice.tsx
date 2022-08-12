@@ -83,7 +83,7 @@ const Choice = () => {
       <h1>{!inActivity ? `Level ${level}` : `<${currentNode.label}>`}</h1>
       {!inActivity ? (
         <div>
-          <p>선택해주세요.</p>
+          <p>{currentNode.question}</p>
           <Separator height="15px" />
           <ChoiceButtonCombo
             optionALabel={currentNode.left.label}
