@@ -15,6 +15,10 @@ const root = treeExample();
 const countDownDefaultValue = 5;
 
 const Choice = () => {
+  useEffect(() => {
+    console.log('Current time: ', new Date());
+  }, []);
+
   // local storage
   const { choices, addChoice, getInActivity, setInActivity } = useLocalStorage();
 
