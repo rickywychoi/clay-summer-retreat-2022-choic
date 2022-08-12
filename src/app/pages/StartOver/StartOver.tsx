@@ -5,12 +5,13 @@ import { useNavigation } from '~/app/shared/router/router.hook';
 import { useLocalStorage } from '~/app/shared/localStorage/localStorage.hook';
 
 const StartOverPage = () => {
-  const { resetChoices, setInActivity } = useLocalStorage();
+  const { resetChoices, setInActivity, setSnackTime } = useLocalStorage();
   const { navigateTo, goBack } = useNavigation();
 
   const handleReset = () => {
     resetChoices();
     setInActivity(false);
+    setSnackTime(false);
     navigateTo('/');
   };
 

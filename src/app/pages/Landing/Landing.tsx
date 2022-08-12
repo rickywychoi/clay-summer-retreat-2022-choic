@@ -4,15 +4,16 @@ import Separator from '../../components/Separator';
 import ActionButton from '~/app/components/ActionButton';
 import { useNavigation } from '~/app/shared/router/router.hook';
 import { useLocalStorage } from '~/app/shared/localStorage/localStorage.hook';
-import { treeExample } from '~/app/core/binaryTree/treeExample';
+import { tree } from '~/app/core/binaryTree/tree';
 import { checkIfLastChild, inOrder } from '~/app/core/binaryTree/utils';
 import { routes } from '~/app/shared/routes';
 
-const root = treeExample();
+const root = tree();
 
 const Landing = () => {
   const { navigateTo } = useNavigation();
-  const { choicesRaw, choices, setChoices, getInActivity, setInActivity } = useLocalStorage();
+  const { choicesRaw, choices, setChoices, getInActivity, setInActivity, getSnackTime, setSnackTime } =
+    useLocalStorage();
 
   const isChoicesEmpty = useMemo(() => !choicesRaw, [choicesRaw]);
 
@@ -24,7 +25,9 @@ const Landing = () => {
     }
     const inActivity = getInActivity();
     setInActivity(inActivity);
-  }, [isChoicesEmpty, choicesRaw, setChoices, getInActivity, setInActivity]);
+    const snackTime = getSnackTime();
+    setSnackTime(snackTime);
+  }, [isChoicesEmpty, choicesRaw, setChoices, getInActivity, setInActivity, getSnackTime, setSnackTime]);
 
   useEffect(() => {
     syncDataFromLocalStorage();

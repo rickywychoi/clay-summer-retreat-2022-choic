@@ -1,11 +1,11 @@
 import React from 'react';
 import { inOrder } from '~/app/core/binaryTree/utils';
-import { treeExample } from '~/app/core/binaryTree/treeExample';
+import { tree } from '~/app/core/binaryTree/tree';
 import { useLocalStorage } from '~/app/shared/localStorage/localStorage.hook';
 import SummaryCard from '~/app/components/SummaryCard';
 import Separator from '~/app/components/Separator';
 
-const root = treeExample();
+const root = tree();
 
 const FinalSummary = () => {
   const { choices } = useLocalStorage();
@@ -15,10 +15,10 @@ const FinalSummary = () => {
       <h1>THE END</h1>
       {choices
         .map((c) => inOrder(root, c))
-        .map((c) => {
+        .map((c, idx) => {
           return (
             <div key={c.key}>
-              <SummaryCard title={c.label} content={c.content} key={c.key} />
+              <SummaryCard title={c.label} content={c.content} key={c.key} order={idx} />
               <Separator height="10px" />
             </div>
           );

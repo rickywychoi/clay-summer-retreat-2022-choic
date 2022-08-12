@@ -1,6 +1,7 @@
 enum keys {
   Choices = 'choices',
-  InActivity = 'inActivity'
+  InActivity = 'inActivity',
+  SnackTime = 'snackTime'
 }
 
 const parseChoices = (choicesFlatten: string) => choicesFlatten.split(',');
@@ -29,6 +30,13 @@ export const useLocalStorage = () => {
   };
   const setInActivity = (inActivity: boolean) => localStorage.setItem(keys.InActivity, `${inActivity}`);
 
+  // snackTime
+  const getSnackTime = () => {
+    const val = localStorage.getItem(keys.SnackTime);
+    return !val || val === 'false' ? false : true;
+  };
+  const setSnackTime = (snackTime: boolean) => localStorage.setItem(keys.SnackTime, `${snackTime}`);
+
   return {
     choicesRaw,
     choices,
@@ -36,6 +44,8 @@ export const useLocalStorage = () => {
     addChoice,
     setChoices,
     getInActivity,
-    setInActivity
+    setInActivity,
+    getSnackTime,
+    setSnackTime
   };
 };
