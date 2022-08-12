@@ -125,7 +125,7 @@ const real = (): Node => {
     place: '본당'
   });
   root.left.left.left.left.right = new Node('끝인상', {
-    todo: '본인 교회 반 선생님과 친구들에게 편지를 써주세요.',
+    todo: '자신의 CLAY 반 선생님과 친구들에게 편지를 써주세요.',
     place: '본당'
   });
   root.left.left.left.right.left = new Node('외로움', {
@@ -154,7 +154,7 @@ const real = (): Node => {
     place: '본당'
   });
   root.left.right.left.left.right = new Node('끝인상', {
-    todo: '본인 교회 반 선생님과 친구들에게 편지를 써주세요.',
+    todo: '자신의 CLAY 반 선생님과 친구들에게 편지를 써주세요.',
     place: '본당'
   });
   root.left.right.left.right.left = new Node('돌고래', {
@@ -175,7 +175,7 @@ const real = (): Node => {
     place: '본당'
   });
   root.left.right.right.right.right = new Node('끝인상', {
-    todo: '본인 교회 반 선생님과 친구들에게 편지를 써주세요.',
+    todo: '자신의 CLAY 반 선생님과 친구들에게 편지를 써주세요.',
     place: '본당'
   });
   root.right.right.left.left.left = new Node('돌고래', {
@@ -199,7 +199,7 @@ const real = (): Node => {
     place: '본당'
   });
   root.right.right.right.left.right = new Node('끝인상', {
-    todo: '본인 교회 반 선생님과 친구들에게 편지를 써주세요.',
+    todo: '자신의 CLAY 반 선생님과 친구들에게 편지를 써주세요.',
     place: '본당'
   });
   root.right.right.right.right.left = new Node('요나', {
