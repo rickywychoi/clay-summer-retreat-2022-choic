@@ -19,7 +19,7 @@ export default function AppRouter() {
 
       <Suspense fallback={<LoadingMessage />}>
         <Routes>
-          <Route path="/" element={WithStyle(Landing)} />\
+          <Route path="/" element={WithStyle(Landing)} />
           <Route path={routes.MakeChoice} element={WithStyle(Choice)} />
           <Route path={routes.StartOver} element={WithStyle(StartOverPage)} />
           <Route path={routes.TheEnd} element={WithStyle(FinalSummary)} />

@@ -1,7 +1,8 @@
 enum keys {
   Choices = 'choices',
   InActivity = 'inActivity',
-  SnackTime = 'snackTime'
+  SnackTime = 'snackTime',
+  ResetLocalStorage = 'resetLocalStorage'
 }
 
 const parseChoices = (choicesFlatten: string) => choicesFlatten.split(',');
@@ -26,17 +27,34 @@ export const useLocalStorage = () => {
   // inActivity
   const getInActivity = () => {
     const val = localStorage.getItem(keys.InActivity);
-    return !val || val === 'false' ? false : true;
+    return parseBoolean(val);
   };
   const setInActivity = (inActivity: boolean) => localStorage.setItem(keys.InActivity, `${inActivity}`);
 
   // snackTime
   const getSnackTime = () => {
     const val = localStorage.getItem(keys.SnackTime);
-    return !val || val === 'false' ? false : true;
+    return parseBoolean(val);
   };
   const setSnackTime = (snackTime: boolean) => localStorage.setItem(keys.SnackTime, `${snackTime}`);
 
+  // resetLocalStorage
+  const getResetLocalStorage = () => {
+    const val = localStorage.getItem(keys.ResetLocalStorage);
+    return parseBoolean(val);
+  };
+  const setResetLocalStorage = (resetLocalStorage: boolean) =>
+    localStorage.setItem(keys.ResetLocalStorage, `${resetLocalStorage}`);
+
+  // helper
+  const parseBoolean = (val: string) => (!val || val === 'false' ? false : true);
+
+  const resetEverything = () => {
+    resetChoices();
+    setInActivity(false);
+    setSnackTime(false);
+    setResetLocalStorage(false);
+  };
   return {
     choicesRaw,
     choices,
@@ -46,6 +64,9 @@ export const useLocalStorage = () => {
     getInActivity,
     setInActivity,
     getSnackTime,
-    setSnackTime
+    setSnackTime,
+    getResetLocalStorage,
+    setResetLocalStorage,
+    resetEverything
   };
 };
