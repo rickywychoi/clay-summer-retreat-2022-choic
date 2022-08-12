@@ -12,3 +12,5 @@
 
 /* Import Components */
 @import './components/logo.component';
+
+@import './react-image-gallery/css/image-gallery.css';
