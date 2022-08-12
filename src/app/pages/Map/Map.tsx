@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
-import '../../../styles/react-image-gallery/css/image-gallery.css'; // band-aid fix for deployment - otherwise need to figure out how craco picks up css files in node_modules!!
+import './react-image-gallery/css/image-gallery.css'; // band-aid fix for deployment - otherwise need to figure out how craco picks up css files in node_modules!!
 import mapImage from '../../../assets/images/map.png';
 
 const images = [
