@@ -6,7 +6,7 @@ import Landing from './pages/Landing/Landing';
 import './main.css';
 import ResetPage from './pages/Reset/Reset';
 import Choice from './pages/Choice/Choice';
-import FinalSummary from './pages/FinalSummary.tsx/FinalSummary';
+import FinalSummary from './pages/FinalSummary/FinalSummary';
 import { routes } from './shared/routes';
 
 export default function AppRouter() {
