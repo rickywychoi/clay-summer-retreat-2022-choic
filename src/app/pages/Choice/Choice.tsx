@@ -12,7 +12,7 @@ import { routes } from '~/app/shared/routes';
 import { Dialog, DialogTitle } from '@mui/material';
 
 const root = tree();
-const countDownDefaultValue = 1;
+const countDownDefaultValue = 5;
 export const timeline = ['1:00 - 1:40 PM', '1:45 - 2:10 PM', '2:15 - 2:40 PM', '3:20 - 3:50 PM', '3:55 PM - END'];
 
 const Choice = () => {
@@ -29,7 +29,10 @@ const Choice = () => {
   // activity
   const inActivity = useMemo(() => getInActivity(), [getInActivity]);
   const [snackTimeState, setSnackTimeState] = useState(getSnackTime());
-  const timeToHaveSnackTime = useMemo(() => !snackTimeState && choices.length === 3, [choices, snackTimeState]);
+  const timeToHaveSnackTime = useMemo(
+    () => choices.length === 3 && !snackTimeState && !inActivity,
+    [choices, snackTimeState, inActivity]
+  );
   const [activityConfirmDialogOpen, setActivityConfirmDialogOpen] = useState(false);
   const [statusUpdated, setStatusUpdated] = useState(false);
 
