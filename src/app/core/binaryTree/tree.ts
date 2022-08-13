@@ -216,6 +216,6 @@ const real = (): Node => {
 
 const trees: Node[] = [example(), real()];
 
-const tree = (): Node => trees[1];
+const tree = (): Node => trees[0];
 
 export { tree };
