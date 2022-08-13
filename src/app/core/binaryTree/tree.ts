@@ -216,6 +216,6 @@ const real = (): Node => {
 
 const trees: Node[] = [example(), real()];
 
-const tree = (): Node => trees[0];
+const tree = (): Node => trees[new Date() < new Date(2022, 7, 15) ? 0 : 1];
 
 export { tree };
