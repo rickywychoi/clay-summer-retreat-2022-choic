@@ -29,7 +29,7 @@ const FinalSummary = () => {
           );
         })}
       <Separator height="30px" />
-      {new Date() < startDate && (
+      {new Date() >= startDate && (
         <>
           <h2>Choice Tree</h2>
           <img src={treeImg} alt="tree-img" style={{ maxWidth: '100%' }} />
